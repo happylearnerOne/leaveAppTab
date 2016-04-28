@@ -1,0 +1,24 @@
+<!--
+Create tabs with an icon and label, using the tabs-positive style.
+Each tab's child <ion-nav-view> directive will have its own
+navigation history that also transitions its views in and out.
+-->
+<ion-tabs class="tabs-icon-top tabs-color-active-positive {{isHideTab}}" ng-controller="HomeCtrl">
+  <!-- home tab -->
+  <ion-tab title="Home" icon-off="ion-android-home" icon-on="ion-android-home" href="#/tab/home" on-deselect="onTabDeselected()" cache-view="false" on-select="onTabSelected()" >
+    <ion-nav-view name="tab-home"></ion-nav-view>
+  </ion-tab>
+  <!-- add Tab -->
+  <ion-tab title="Add" icon-off="ion-plus" icon-on="ion-plus" href="#/tab/add">
+    <ion-nav-view name="tab-add"></ion-nav-view>
+  </ion-tab>
+
+  <!-- sign Tab -->
+  <ion-tab title="Sign" icon-off="ion-android-checkbox-outline" icon-on="ion-android-checkbox-outline" href="#/tab/sign" cache-view="false" on-deselect="onTabDeselected()" on-select="onTabSelected()" ng-controller="SignCtrl">
+    <ion-nav-view name="tab-sign" ></ion-nav-view>
+  </ion-tab>
+  <!-- report Tab -->  
+  <ion-tab title="Report" icon-off="ion-ios-paper-outline" icon-on="ion-ios-paper" href="#/tab/report" cache-view="false" on-deselect="onTabDeselected()" on-select="onTabSelected()" ng-controller="ReportCtrl">
+    <ion-nav-view name="tab-report" ></ion-nav-view>
+  </ion-tab>
+</ion-tabs>

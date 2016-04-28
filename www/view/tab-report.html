@@ -1,0 +1,96 @@
+<ion-view view-title='{{viewTitle}}' hide-nav-bar="false">
+	<ion-nav-buttons side="left">
+<!--   	<button class="button" ng-click="goBack('reportList')">
+  		<i class="ion-arrow-left-c"></i> Back
+  	</button> -->
+  </ion-nav-buttons>
+  <ion-content >  	
+  	<ion-list ng-if="!isLogin">
+  		<ion-item class="item-icon-right item-text-wrap" href="#">
+  			請先登入系統
+  		</ion-item>
+  	</ion-list>
+
+  	<!-- 報表清單:Start -->
+    <ion-list ng-if="isLogin && !isLeaveRecord && !isSignRecord && !isWaitForSignRecord && !isShowMySendingLeaveRecord">
+    	<ion-item class="item-icon-right item-text-wrap" ng-click="showMyLeaveRecords()">
+    		<button class="button icon-right ion-chevron-right button-clear button-dark">我的請假紀錄</button>
+    	</ion-item>
+    	<!-- <ion-item class="item-icon-right item-text-wrap" ng-click="showMySignRecords()">
+    		<button class="button icon-right ion-chevron-right button-clear button-dark">我的簽核紀錄</button>
+    	</ion-item>     -->
+    	<ion-item class="item-icon-right item-text-wrap" ng-click="showMyWaitForSignRecords('showMyWaitForSignRecords')">
+    		<button class="button icon-right ion-chevron-right button-clear button-dark">簽核中假單</button>
+    	</ion-item> 	
+    </ion-list>
+    <!-- 報表清單:End -->
+
+    <!-- 每份報表顯示程式:Start -->
+    <!-- 顯示我的簽核紀錄清單:Start -->
+	  <!-- <div ng-if="isLogin && isSignRecord">顯示我的簽核紀錄報表</div> -->		 
+	  <!-- 顯示我的簽核紀錄清單:End -->
+
+	  <!-- 顯示我的請假紀錄/送簽中假單清單:Start -->
+	  <div ng-if="isLogin && (isWaitForSignRecord || isLeaveRecord)">
+
+	  	<ion-list>
+	  		<div class="list card">
+					<div class="item item-divider" ng-click="goBack('reportList')">
+						<i class="icon-left ion-chevron-left"></i> 
+						<span>報表列表</span>					
+					</div> 	    			 	    			
+					<div class="item item-text-wrap" ng-repeat="r in mySendingLeaves | orderBy:['APPLY_DATE']:false" ng-click="showMySendingLeaveRecord(r)">
+						從{{r.SDATE | date:'yyyy-MM-dd'}} {{r.SHOUR}}請到{{r.EDATE | date:'yyyy-MM-dd'}} {{r.EHOUR}}
+	    				<i class="icon-right ion-chevron-right"></i>   
+					</div>   					
+	  		</div>
+	  		<!-- <ion-item class="item-icon-right item-text-wrap" ng-repeat="r in mySendingLeaves | orderBy:['APPLY_DATE']:false" ng-click="showMySendingLeaveRecord(r)">
+	  			從{{r.SDATE | date:'yyyy-MM-dd'}} {{r.SHOUR}}請到{{r.EDATE | date:'yyyy-MM-dd'}} {{r.EHOUR}}
+	  			<i class="icon-right ion-chevron-right"></i>
+	  		</ion-item> -->
+	  	</ion-list>	    	 	
+	  </div>
+	  <!-- 顯示我的請假紀錄/送簽中假單清單:End -->
+
+ 		
+ 		<!-- report detail here ↓↓↓↓ -->
+		<div class="list card" ng-if="isShowMySendingLeaveRecord">
+<!-- 			<div class="item item-divider text-center">				
+				<div style="font-family:微軟正黑體;">{{mySendingLeaveRec.ASKFORLEAVEREASON_NAME}}</div>
+			</div>  -->
+			<div class="item item-body">
+				<div class="div-table-solid">
+		 			<div class="row">
+		        <div class="header col col-20 col_energized">申請日</div>
+		        <div class="col">{{mySendingLeaveRec.APPLY_DATE | date: "yyyy-MM-dd"}}</div> 
+		      </div>        
+		      <div class="row">
+		        <div class="header col col-20 col_energized">請假起訖</div>
+		        <div class="col">{{mySendingLeaveRec.SDATE | date: "yyyy-MM-dd"}} {{mySendingLeaveRec.SHOUR}}~{{mySendingLeaveRec.EDATE | date: "yyyy-MM-dd"}} {{mySendingLeaveRec.EHOUR}}</div> 
+		      </div> 
+		      <div class="row">
+		        <div class="header col col-20 col_energized">職務代理人</div>
+		        <div class="col">{{mySendingLeaveRec.DEPUTY_EMP_NAME}}</div> 
+		      </div> 	       
+		      <div class="row">
+		        <div class="header col col-20 col_energized">事由</div>
+		        <div class="col">{{mySendingLeaveRec.REASON}}</div> 
+		      </div>   
+		      <div class="row">
+		        <div class="header col col-20 col_energized">簽核狀態</div>
+		        <div class="col" ng-if="mySendingLeaveRec.STATUS == 'U'">{{mySendingLeaveRec.SIGN_EMP_NAME}} {{mySendingLeaveRec.STATUS_NAME}}
+		        </div> 
+		        <div class="col" ng-if="mySendingLeaveRec.STATUS == 'Y'">{{mySendingLeaveRec.STATUS_NAME}}
+		        </div> 	 	               
+		      </div> 	      	   	     	         
+				</div>				
+		  </div>			
+			<div class="item tabs tabs-secondary tabs-icon-left item-divider">
+				<a class="tab-item" href="#" style="font-size:20px" ng-click="goBack(reportStatus)"><i class="icon ion-document-text"></i> 假單列表</a>
+				<a class="tab-item" href="#" style="font-size:20px" ng-click="goBack('reportList')"><i class="icon ion-android-list"></i> 報表列表</a>	
+			</div>
+		</div>   	
+		<!-- report detail here ↑↑↑↑ -->	
+  </ion-content>
+</ion-view>
+

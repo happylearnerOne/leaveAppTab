@@ -1,0 +1,201 @@
+<!-- &nbsp;<i class='icon ion-compose'></i> -->
+<ion-view view-title="新增請假紀錄" hide-nav-bar="true" ng-init="init()">
+  <ion-content layout="column">    
+    <md-toolbar class="md-primary" layout="row" layout-align="center">     
+      <div layout-padding>
+        新增請假紀錄&nbsp;<i class='icon ion-compose'></i>
+      </div>      
+    </md-toolbar> 
+    <md-content flex layout-padding style="background:white">
+      <md-input-container class="md-block" flex-gt-sm>
+        <label>挑選假別</label>
+        <md-select ng-model="leave.leaveType">
+          <md-option ng-repeat="m in leaveCodes | orderBy:'ASKFORLEAVEREASON_NO'" value="{{m.ASKFORLEAVEREASON_NO}}">{{m.ASKFORLEAVEREASON_NAME}}</md-option>
+        </md-select>
+      </md-input-container> 
+      <h5>開始日/時</h5>
+      <div layout="row" class="md-block">
+        <md-datepicker ng-model="datepickerObjectFrom.inputDate" md-placeholder="Enter date"></md-datepicker> 
+        <!-- <input class=" md-input" mdc-datetime-picker="" date="false" time="true" id="time"
+short-time="true" placeholder="Time" min-date="minDate" format="hh:mm a" ng-model="time"
+type="text"> -->        
+<!-- <mdp-time-picker name="timeFormat" ng-model="currentTimeText" mdp-format="HH:mm A"> -->
+        <!-- <mdp-time-picker mdp-auto-switch="true" ng-model="currentTime"></mdp-time-picker> -->     
+      </div>
+      <div layout="row">  
+        <!-- <i class="material-icons md-icon-gray" title="Start Time" style="padding-left:13px;">access_time</i> -->
+        <i class="material-icons md-icon-gray md-room-icon" title="Start Time" style="padding-left:13px;">access_time</i>
+        <md-select ng-model="bb" style="margin:0 0 0 25px">
+          <md-option value="1">09:00</md-option>
+          <md-option value="2">10:00</md-option>
+          <md-option value="3">11:00</md-option>
+          <md-option value="4">12:00</md-option> 
+          <!-- <md-option ng-repeat="m in timeList" value="m.id">{{m.time}}</md-option> -->
+        </md-select>      
+      </div>
+      <h5>結束日/時</h5>
+      <div layout="row" class="md-block">
+        <md-datepicker ng-model="datepickerObjectFrom.inputDate" md-placeholder="Enter date"></md-datepicker> 
+        <!-- <input class=" md-input" mdc-datetime-picker="" date="false" time="true" id="time"
+short-time="true" placeholder="Time" min-date="minDate" format="hh:mm a" ng-model="time"
+type="text"> -->        
+<!-- <mdp-time-picker name="timeFormat" ng-model="currentTimeText" mdp-format="HH:mm A"> -->
+        <!-- <mdp-time-picker mdp-auto-switch="true" ng-model="currentTime"></mdp-time-picker> -->     
+      </div>
+      <div layout="row" >
+        <i class="material-icons md-icon-gray md-room-icon" title="End Time" style="padding-left:13px;">access_time</i>
+        <md-select ng-model="aa" style="margin:0 0 0 25px">
+          <md-option value="1">09:00</md-option>
+          <md-option value="2">10:00</md-option>
+          <md-option value="3">11:00</md-option>
+          <md-option value="4">12:00</md-option> 
+          <!-- <md-option ng-repeat="m in timeList" value="m.id">{{m.time}}</md-option> -->
+        </md-select>    
+      </div>      
+      <div layout="row">
+        <i class="material-icons md-icon-gray" style="padding-left:13px;">assignment_turned_in</i><span style="margin:0 0 0 25px">請假時間共: XX 天 XX 小時</span>
+      </div>
+      <md-input-container class="md-block" flex-gt-sm>
+        <label>事由</label>
+        <textarea ng-model="user.biography" md-maxlength="150" rows="5" md-select-on-focus></textarea>      
+      </md-input-container> 
+      <div layout="row">簽核流程<i class="material-icons md-icon-gray md-room-icon" title="簽核" style="padding-left:13px;">create</i></div> 
+      <md-divider></md-divider>
+      <md-input-container class="md-block" flex-gt-sm>
+        <label>職務代理人</label>
+        <md-select ng-model="leave.deputy">
+          <md-option ng-repeat="m in servingEmpLists | orderBy:'EMP_NAME'" value="{{m.EMP_NO}}">{{m.EMP_NAME}}</md-option>
+        </md-select>              
+      </md-input-container> 
+      <md-input-container class="md-block" flex-gt-sm>
+        <label>直屬主管</label>
+        <md-select ng-model="leave.managerL1">
+          <md-option ng-repeat="m in servingEmpLists | orderBy:'EMP_NAME'" value="{{m.EMP_NO}}">{{m.EMP_NAME}}</md-option>
+        </md-select>              
+      </md-input-container> 
+      <md-input-container class="md-block" flex-gt-sm>
+        <label>事業群主管</label>
+        <md-select ng-model="leave.managerL2">
+          <md-option ng-repeat="m in servingEmpLists | orderBy:'EMP_NAME'" value="{{m.EMP_NO}}">{{m.EMP_NAME}}</md-option>
+        </md-select>              
+      </md-input-container> 
+      <md-input-container class="md-block" flex-gt-sm>
+        <label>人事</label>
+        <md-select ng-model="leave.hr">
+          <md-option ng-repeat="m in servingEmpLists | orderBy:'EMP_NAME'" value="{{m.EMP_NO}}">{{m.EMP_NAME}}</md-option>
+        </md-select>              
+      </md-input-container> 
+      <!-- <md-input-container class="md-block" flex-gt-sm> -->
+        <div layout="column" layout-align="center">
+          <md-button class="md-raised md-primary"><md-icon class="material-icon">done</md-icon>OK</md-button>
+        </div>
+        
+      <!-- </md-input-container>  -->
+    </md-content>
+  </ion-content>
+
+<!--   <ion-content > 
+    <ion-list ng-if="!isLogin">
+      <ion-item class="item-icon-right item-text-wrap" href="#">
+        請先登入系統
+      </ion-item>
+    </ion-list>  
+    <form ng-if="isLogin && isShow">
+      <div class="list list-inset"> 
+        <label class="item item-input item-select"> 
+          <span class="input-label">假別</span>            
+          <select ng-model="leave.leaveType" ng-options="m.ASKFORLEAVEREASON_NO as m.ASKFORLEAVEREASON_NAME for m in leaveCodes | orderBy:'ASKFORLEAVEREASON_NO'">
+              <option value="" >請選擇</option>
+            </select>   
+        </label>          
+      </div>
+      <div class="list list-inset text-center "> 
+        <label class="item item-input ">
+          <span class="input-label"><i class="icon ion-android-calendar"></i>請假日期(起)</span> 
+        </label> 
+        <br/>           
+        <span>
+          <ionic-datepicker input-obj="datepickerObjectFrom">
+            <button class="button button-positive "> {{datepickerObjectFrom.inputDate | date:datepickerObjectFrom.dateFormat}}</button>
+          </ionic-datepicker>  
+        </span>
+        &nbsp;&nbsp;
+        <span >
+          <ionic-timepicker input-obj="timePickerObject24HourFrom">
+            <button class="button button-positive overflowShow">
+              <standard-time-meridian etime='timePickerObject24HourFrom.inputEpochTime'></standard-time-meridian>
+            </button>
+          </ionic-timepicker>
+        </span>                                                         
+      </div>
+      <div>
+      <div class="list list-inset text-center "> 
+        <label class="item item-input ">
+          <span class="input-label"><i class="icon ion-android-calendar"></i>請假日期(迄)</span> 
+        </label> 
+        <br/>           
+        <span>
+          <ionic-datepicker input-obj="datepickerObjectTo">
+            <button class="button button-positive"> {{datepickerObjectTo.inputDate | date:datepickerObjectTo.dateFormat}}</button>
+          </ionic-datepicker>  
+        </span>
+        &nbsp;&nbsp;
+        <span >
+          <ionic-timepicker input-obj="timePickerObject24HourTo">
+            <button class="button button-positive overflowShow">
+            <standard-time-meridian etime='timePickerObject24HourTo.inputEpochTime'></standard-time-meridian>
+          </button>
+          </ionic-timepicker>
+        </span>                                                         
+      </div>
+      <div class="list list-inset">
+        
+        <label class="item item-input"> 
+                  
+          <span class="input-label">            
+            <i class="icon ion-clock"></i> 請假時間共: {{totalday}} 天 {{totalhour}} 小時
+          </span> 
+        </label>        
+      </div>
+      <div class="list list-inset">
+        <label class="item item-input">          
+          <span class="input-label"><i class="icon ion-compose"></i>事由</span>  
+          <textarea cols="30" rows="3" placeholder="請輸入請假事由" ng-model="leave.reason"></textarea>
+        </label>
+      </div>
+
+      <div class="padding">
+        <label class="item item-input item-divider">
+          <span class="input-label">簽核流程<i class="icon ion-person-stalker"></i></span>
+        </label>
+        <label class="item item-input item-select">
+          <span class="input-label">職務代理人<i class="icon ion-person"></i></span>
+          <select ng-model="leave.deputy" ng-options="m.EMP_NO as m.EMP_NAME for m in servingEmpLists | orderBy:'EMP_NAME'">
+            <option value="" >請選擇</option>
+          </select>                    
+        </label>
+        <label class="item item-input item-select">
+          <span class="input-label">部門主管<i class="icon ion-person"></i></span>
+          <select ng-model="leave.managerL1" ng-options="m.EMP_NO as m.EMP_NAME for m in servingEmpLists | orderBy:'EMP_NAME'">
+            <option value="" >請選擇</option>
+          </select>                   
+        </label>
+        <label class="item item-input item-select" ng-if="(totalday * 8) + totalhour > 24">
+          <span class="input-label">事業群主管<i class="icon ion-person"></i></span>
+          <select ng-model="leave.managerL2" ng-options="m.EMP_NO as m.EMP_NAME for m in servingEmpLists | orderBy:'EMP_NAME'">
+            <option value="" >請選擇</option>
+          </select>                   
+        </label>        
+        <label class="item item-input item-select">
+          <span class="input-label">人事室<i class="icon ion-person"></i></span>
+          <select ng-model="leave.hr" ng-options="m.EMP_NO as m.EMP_NAME for m in servingEmpLists | orderBy:'EMP_NAME'">
+            <option value="" >請選擇</option>
+          </select>           
+        </label>           
+      </div>
+      <div class="padding"> 
+        <button type="button" class="button button-block button-positive" ng-click="createLeaveTaking(leave)">確認送出<i class="icon ion-checkmark-round"></i></button> 
+      </div> 
+    </form> 
+  </ion-content>  -->  
+</ion-view>

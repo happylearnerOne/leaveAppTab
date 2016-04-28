@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+    <title></title>
+
+    <!-- Required: 引入ionic的css -->
+    <link href="lib/ionic/css/ionic.css" rel="stylesheet">
+
+    <!-- 引入angular-material的css -->
+    <link rel="stylesheet" href="lib/angular-material/angular-material.css">
+
+    <!-- material-datetimepicker -->
+    <link href="css/material-datetimepicker.css" rel="stylesheet">
+
+    <!-- mdPicker -->
+    <!-- <link href="lib/mdPickers/dist/mdPickers.css" ref="stylesheet"> -->
+
+    <!-- Load Material Design Icon -->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    
+    <!-- my style -->    
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- IF using Sass (run gulp sass first), then uncomment below and remove the CSS includes above
+    <link href="css/ionic.app.css" rel="stylesheet">
+    -->
+
+    <!-- ionic/angularjs js -->
+    <script src="lib/ionic/js/ionic.bundle.js"></script>
+
+    <!-- angular-material js -->
+    <!-- // <script src="lib/angular-animate/angular-animate.js"></script> -->
+    <script src="lib/angular-aria/angular-aria.js"></script>
+    <script src="lib/angular-material/angular-material.js"></script>
+
+    <!-- datepicker, timepicker: path to ionic/angularjs js -->    
+    <script src="lib/ionic-timepicker/dist/ionic-timepicker.bundle.min.js"></script>
+    <script src="lib/ionic-datepicker/dist/ionic-datepicker.bundle.min.js"></script> 
+
+    <!-- mdPicker -->
+    <!-- // <script src="lib/moment/moment.js"></script> -->
+    <!-- // <script src="lib/mdPickers/dist/mdPickers.js"></script> -->
+
+    <!-- cordova script (this will be a 404 during development) -->
+    <script src="cordova.js"></script>
+
+    <!-- your app's js: app, directives, controllers, factories, services -->    
+    <script src="js/app.js"></script>  
+    <script src="js/config.js"></script>
+    <!-- directive -->
+    <script src="js/directives/standardTimeMeridian.js"></script>
+    <script src="js/directives/ionNavBackButton.js"></script>
+    <script src="js/directives/ionicNavBarDelegate.js"></script>
+    <!-- factory -->    
+    <script src="js/factory/AccountFactory.js"></script>
+    <script src="js/factory/EmpFactory.js"></script>
+    <script src="js/factory/LeaveFactory.js"></script>    
+    
+    <!-- controller -->
+    <script src="js/controllers/HomeCtrl.js"></script>
+    <script src="js/controllers/AddCtrl.js"></script>
+    <script src="js/controllers/SignCtrl.js"></script>
+    <script src="js/controllers/ReportCtrl.js"></script>    
+    <script src="js/controllers/ReportMyLeaveCtrl.js"></script> 
+    <script src="js/controllers/TabCtrl.js"></script>
+
+    <!-- component -->
+    <script src="js/component/moment-with-locales.min.js"></script>  
+    <script src="js/component/highlight.min.js"></script>   
+    <script src="js/component/beautifier.js"></script>   
+    <script src="js/component/angular-material-datetimepicker.js"></script>    
+
+  </head>
+  <body ng-app="LeaveTaking">
+    <!--
+      The nav bar that will be updated as we navigate between views.
+    -->
+    <ion-nav-bar class="bar-stable">
+        <!--
+        <ion-nav-back-button>
+        </ion-nav-back-button>
+        -->      
+    </ion-nav-bar>
+  
+    <!--
+      The views will be rendered in the <ion-nav-view> directive below
+      Templates are in the /templates folder (but you could also
+      have templates inline in this html file if you'd like).
+    -->
+    <ion-nav-view cache-view="false">
+    </ion-nav-view>
+  </body>
+</html>

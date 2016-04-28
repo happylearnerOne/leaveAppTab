@@ -1,0 +1,78 @@
+<ion-view view-title="Home" ng-controller="HomeCtrl" hide-nav-bar="true">
+	<ion-content scroll="true" >
+		<div ng-if="isLogin">
+			<div class="row-nowidth">
+				<div class="col-50 col-assertive card-margin-sm" style="color:white;text-align:center;" ng-click="goGetNeedMeSign()">
+					<br/><br/>
+					<i class="icon ion-edit" style="font-size:62px;"></i>
+					<br/>												
+					<font style="font-size:22px">待簽假單<br/><br/>
+						<!-- <font style="font-size:18px;border:1px; border-style:solid; border-color:white;"> -->
+					&nbsp;{{needMeSignLeaves.length == null ? 0 : needMeSignLeaves.length}}&nbsp;</font>
+					</font>
+					<br><br><br>
+				</div>
+				<div class="col-50 col-postive card-margin-sm" style="color:white;text-align:center;" ng-click="goGetUnsign()">
+					<br/><br/>
+					<i class="icon ion-share" style="font-size:62px;"></i>
+					<br/>												
+					<font style="font-size:22px">送核假單<br/><br/>
+						<!-- <font style="font-size:18px;border:1px; border-style:solid; border-color:white;"> -->
+					&nbsp;{{mySendingLeaves.length == null ? 0 : mySendingLeaves.length}}&nbsp;</font>
+					</font>
+					<br><br><br>					
+				</div>
+			</div>			
+			<div class="row-nowidth">
+				<div class="col-33 col-royal card-margin-sm" style="color:white;text-align:center;">						
+					<br/><br/>
+					特休<br/>
+					剩136小時
+					<br/><br/><br/>						
+				</div>
+				<div class="col-33 col-balanced card-margin-sm" style="color:white;text-align:center;">						
+					<br/><br/>
+					補休<br/>
+					剩8小時
+					<br/><br/><br/>						
+				</div>
+				<div class="col-33 col-calm card-margin-sm" style="text-align:center;">
+					<a href="#/tab/report" style="color:white;text-decoration: none;">
+					<br/><br/>									
+					<i class="icon ion-ios-paper" style="font-size:40px;"></i>
+					<br>
+					歷史假單
+					<br/><br/><br/>
+					</a>						
+				</div>				
+			</div>	
+			<div class="row-nowidth" ng-click="goAddNewLeave()">				
+				<div class="col col-energized card-margin-sm" style="color:white;text-align:center;">					
+					<br>								
+					<i class="icon ion-ios-paper" style="font-size:40px;"></i>
+					<br>
+					新增假單
+					<br/>
+					<br/>
+				</div>		
+			</div>		
+		</div>
+		<form ng-submit="login(loginData)" ng-if="!isLogin"> 
+			<div class="list"> 
+				<label class="item item-input"> 
+					<i class="icon ion-person placeholder-icon"></i>
+					<input type="text" placeholder="請輸入工號" ng-model="loginData.userid"> 
+				</label> 
+			</div> 
+			<div class="list"> 
+				<label class="item item-input"> 
+					<i class="icon ion-locked placeholder-icon"></i>
+					<input type="password" placeholder="請輸入密碼" ng-model="loginData.password"> 
+				</label> 
+			</div>         
+			<div class="padding"> 
+				<button type="submit" class="button button-block button-positive" ng-disabled="!loginData.userid || !loginData.password">登入請假系統&nbsp;&nbsp;<i class="icon ion-log-in "></i></button> 
+			</div> 
+		</form> 
+	</ion-content>  
+</ion-view>

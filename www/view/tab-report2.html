@@ -1,0 +1,41 @@
+<ion-view view-title="Report" ng-init="init()" ng-controller="Report2Ctrl">
+	<ion-nav-buttons side="left">
+  	<button class="button" ng-click="goBack()" ng-show="isLeaveRecord == true || isSignRecord == true"><i class="ion-arrow-left-c"></i> Back
+  	</button>
+  </ion-nav-buttons>
+  <ion-content >  	
+  	<ion-list ng-if="!isLogin">
+  		<ion-item class="item-icon-right" type="item-text-wrap" href="#">
+  			請先登入系統
+  		</ion-item>
+  	</ion-list>
+    <ion-list ng-if="isLogin && !isLeaveRecord && !isSignRecord">    	
+    	<ion-item class="item-icon-right item-text-wrap" ng-click="showMyLeaveRecords()">
+    		<button class="button icon-right ion-chevron-right button-clear button-dark">我的請假紀錄</button>
+    	</ion-item>
+    	<ion-item class="item-icon-right item-text-wrap" ng-click="showMySignRecords()">
+    		<button class="button icon-right ion-chevron-right button-clear button-dark">我的簽核紀錄</button>
+    	</ion-item>    	
+    </ion-list>
+	  <ion-list ng-if="isLogin && (isLeaveRecord || isSignRecord)">      	    				
+	    <div class="div-table-solid" ng-if="isLeaveRecord">			
+	    	<div class="row header">
+	    		<div class="col col-15 col_calm">假別</div>
+	    		<div class="col col-60 col_calm">請假日期</div>
+	    		<div class="col col-25 col_calm">審核狀況</div>	    		
+	    	</div>
+	    	<div class="row">
+	    		<div class="col col-15">特休</div>	    		
+	    		<div class="col col-60">From : 2016/01/30 09:00<br/>~<br/>To : 2016/01/30 18:00 <br/>共 1 天 0.0 小時 </div>
+	    		<div class="col col-25">
+	    			呂幸娟<br/>簽核中
+	    		</div>	    		
+	    	</div>	    	
+	    </div>
+	    <div ng-if="isSignRecord">
+	    	顯示我的簽核紀錄報表
+	    </div>	  	
+ 		</ion-list> 
+  </ion-content>
+</ion-view>
+
